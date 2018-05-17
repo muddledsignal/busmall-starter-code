@@ -2,14 +2,30 @@
 
 'use strict';
 
+var arrayOfProductNames = ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg", "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "tauntaun.jpg", "unicorn.jpg", "water-can.jpg", "wine-glass.jpg", "sweep.png", "usb.gif"];
+var arrayOfProducts = [];
+var arrayCart = [];
+//sweep.png usb.gif
+function Items(filePath, nameOfItem) {
+  this.nameOfItem = nameOfItem;
+  this.imageURL = "assets/" + filePath;
+  this.quantityPurchased = 0;
+  arrayOfProducts.push(this);
+}
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
 
+
   //TODO: Add an <option> tag inside the form's select for each product
   var selectElement = document.getElementById('items');
-  for (var i in Product.allProducts) {
-
+  for (var i in arrayOfProductNames) {
+    console.log('the for is working!');
+    var nameOfItem = arrayOfProductNames[i].slice(0, -4)
+    new Items(arrayOfProductNames[i], nameOfItem);
+    var newOption = document.createElement("OPTION");
+    newOption.textContent = arrayOfProducts[i].nameOfItem;
+    selectElement.appendChild(newOption);
   }
 
 }
@@ -20,6 +36,7 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
+  event.preventDefault();
 
   // Do all the things ...
   addSelectedItemToCart();
@@ -32,8 +49,12 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
-  // TODO: get the quantity
-  // TODO: using those, create a new Cart item instance
+  var itemInCart = {
+    name: document.getElementById('items').value,
+    quantityChosen: document.getElementById('quantity').value
+  }
+
+  arrayCart.push(itemInCart);
 }
 
 // TODO: Save the contents of the cart to Local Storage
@@ -42,7 +63,7 @@ function saveCartToLocalStorage() {
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() { }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
