@@ -55,18 +55,33 @@ function addSelectedItemToCart() {
   }
 
   arrayCart.push(itemInCart);
+  
 }
 
 // TODO: Save the contents of the cart to Local Storage
 function saveCartToLocalStorage() {
-
+  localStorage.setItem('arrayCart', JSON.stringify(arrayCart));
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() { }
+function updateCounter() {
+  var itemCount = document.getElementById('itemCount');
+  itemCount.textContent = arrayCart.length;
+ }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
+  
+  var ulForCartContents = document.createElement('ul');
+  document.getElementById('cartContents').appendChild(ulForCartContents);
+
+  for (var i in arrayCart){
+    var itemInCartLI = document.createElement('li');
+    ulForCartContents.appendChild(itemInCartLI);
+    ulForCartContents.textContent = arrayCart[i].name;
+  }
+
+
   // TODO: Get the item and quantity from the form
   // TODO: Add a new element to the cartContents div with that information
 }
