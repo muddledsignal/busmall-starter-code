@@ -17,15 +17,31 @@ function renderCart() {
   showCart();
 }
 
-// TODO: Remove all of the rows (tr) in the cart table (tbody)
-function clearCart() {}
+function clearCart() {
+  var cartTable = document.getElementById('cart');
+  cartTable.innerHTML = '';
+}
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
 
   // TODO: Find the table body
+  var cartTable = document.getElementById('cart');
 
   // TODO: Iterate over the items in the cart
+  for (var i in Cart) {
+    var cartTableTR = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var td2 = document.createElement('td');
+
+    td1.textContent = Cart[i].name;
+    td2.textContent = Cart[i].quantityChosen;
+
+    cartTableTR.appendChild(td1);
+    cartTableTR.appendChild(td2);
+
+    cartTable.appendChild(cartTableTR);
+  }
   // TODO: Create a TR
   // TODO: Create a TD for the delete link, quantity,  and the item
   // TODO: Add the TR to the TBODY and each of the TD's to the TR

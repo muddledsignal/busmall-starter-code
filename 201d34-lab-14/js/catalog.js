@@ -5,13 +5,14 @@
 var arrayOfProductNames = ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg", "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "tauntaun.jpg", "unicorn.jpg", "water-can.jpg", "wine-glass.jpg", "sweep.png", "usb.gif"];
 var arrayOfProducts = [];
 var arrayCart = [];
-//sweep.png usb.gif
+
 function Items(filePath, nameOfItem) {
   this.nameOfItem = nameOfItem;
   this.imageURL = "assets/" + filePath;
   this.quantityPurchased = 0;
   arrayOfProducts.push(this);
 }
+
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
@@ -60,7 +61,7 @@ function addSelectedItemToCart() {
 
 // TODO: Save the contents of the cart to Local Storage
 function saveCartToLocalStorage() {
-  localStorage.setItem('arrayCart', JSON.stringify(arrayCart));
+  localStorage.setItem('cart', JSON.stringify(arrayCart));
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
